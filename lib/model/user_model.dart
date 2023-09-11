@@ -1,8 +1,4 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 
 class UserModel {
   String? id;
@@ -29,6 +25,4 @@ class UserModel {
       email: map['email'] != null ? map['email'] as String : null,
     );
   }
-
-  String toJson() => json.encode(toMap());
 }

@@ -9,6 +9,7 @@ class TTextFormField extends StatelessWidget {
   final TextInputType inputType;
   final bool obscureText;
   final VoidCallback? function;
+  final int? maxlegth;
   const TTextFormField({
     Key? key,
     required this.text,
@@ -16,15 +17,17 @@ class TTextFormField extends StatelessWidget {
     required this.controller,
     required this.inputType,
     required this.obscureText,
+    this.maxlegth,
     this.function,
   }) : super(key: key);
-   
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 35),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 27),
       child: SizedBox(
         child: TextFormField(
+          maxLength: maxlegth,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please $text';
@@ -37,6 +40,20 @@ class TTextFormField extends StatelessWidget {
             }
             if (text == 'Enter Your password' && !isValidPassword(value)) {
               return 'Password must contain at least 8 characters, \none uppercase letter, one lowercase letter, \nand one digit.';
+            }
+            if (text == 'Enter your phone number') {
+              if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                return 'Enter valid phone number (numeric characters only)';
+              } else if (value.length != 10) {
+                return 'Phone number should have exactly 10 digits';
+              }
+            }
+            if (text == 'Enter your Zipcode') {
+              if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                return 'Enter valid zipcode (numeric characters only)';
+              } else if (value.length < 6) {
+                return 'Zipcode should have 6 digits or more than 6 digits';
+              }
             }
             return null;
           },
@@ -74,15 +91,17 @@ class TTextFormField extends StatelessWidget {
       ),
     );
   }
+
   // Regular expression for email validation
   bool isValidEmail(String value) {
     final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
     return emailRegExp.hasMatch(value);
   }
 
-   // Regular expression for password validation
+  // Regular expression for password validation
   bool isValidPassword(String value) {
-    final passwordRegExp = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+    final passwordRegExp =
+        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
     return passwordRegExp.hasMatch(value);
   }
 }

@@ -1,6 +1,8 @@
 import 'package:easybuy_user_app/controller/authcontroller/auth_controller.dart';
 import 'package:easybuy_user_app/core/color.dart';
 import 'package:easybuy_user_app/core/constants.dart';
+import 'package:easybuy_user_app/view/screens/profilepage/adrees_section/adrees_page.dart';
+import 'package:easybuy_user_app/view/screens/profilepage/pages/privacy_policy.dart';
 import 'package:easybuy_user_app/view/screens/profilepage/widgets/pro_listtile.dart';
 import 'package:easybuy_user_app/view/widgets/app_bar_custom.dart';
 import 'package:easybuy_user_app/view/widgets/commen_button.dart';
@@ -11,7 +13,7 @@ class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
 
   //Controller
-  final myController = Get.put(AuthController());
+  final AuthController _authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +36,25 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   khiegh20,
-                  const Boldtext(text: 'Febin Baby'),
-                  const Boldtext(text: 'febinbaby879@gmail.com'),
+                  Boldtext(text: authenti.currentUser?.displayName ?? 'Name'),
+                  Boldtext(text: authenti.currentUser?.email ?? 'Email'),
+                  Boldtext(text: authenti.currentUser?.uid ?? 'Uid'),
                   const Divider(),
                   InkWell(
                     onTap: () {},
                     child: const ProfileListTile(
                       preffixIcon: Icons.edit,
                       text: 'Edit Profile',
+                      suffixIcon: Icons.arrow_circle_right_outlined,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Get.to(const PrivacyPolicyScreen());
+                    },
+                    child: const ProfileListTile(
+                      preffixIcon: Icons.privacy_tip_sharp,
+                      text: 'Privacy policy',
                       suffixIcon: Icons.arrow_circle_right_outlined,
                     ),
                   ),
@@ -54,7 +67,9 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(const AdressScreen());
+                    },
                     child: const ProfileListTile(
                       preffixIcon: Icons.home_rounded,
                       text: 'Address',
@@ -106,7 +121,7 @@ class ProfilePage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                myController.logout();
+                _authController.logout();
               },
               child: const Text('Ok'),
             ),
@@ -115,5 +130,4 @@ class ProfilePage extends StatelessWidget {
       },
     );
   }
-  
 }

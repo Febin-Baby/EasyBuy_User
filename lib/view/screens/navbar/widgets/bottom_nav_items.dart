@@ -28,12 +28,12 @@ class NavBarItems extends StatelessWidget {
           onTap: landingPageController.changeTabIndex,
           currentIndex: landingPageController.tabIndex.value,
           selectedItemColor: const Color(0xFF212121),
-        unselectedItemColor: const Color(0xFF9E9E9E),
-        selectedLabelStyle: selectedLabelStyle,
-        unselectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.normal,
-          fontSize: 10,
-        ),
+          unselectedItemColor: const Color(0xFF9E9E9E),
+          selectedLabelStyle: selectedLabelStyle,
+          unselectedLabelStyle: const TextStyle(
+            fontWeight: FontWeight.normal,
+            fontSize: 10,
+          ),
           items: const [
             BottomNavigationBarItem(
               icon: Icon(

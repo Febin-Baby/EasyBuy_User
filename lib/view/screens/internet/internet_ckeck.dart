@@ -19,7 +19,7 @@ class ScreenNoInternet extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/noInternet.png',
+              'assets/images/fix-no-internet-connection.jpg.webp',
               scale: 2,
             ),
             khieg10,

@@ -1,4 +1,6 @@
+import 'package:easybuy_user_app/controller/cart_section/order_controlller.dart';
 import 'package:easybuy_user_app/controller/nav_bar_controller.dart';
+import 'package:easybuy_user_app/controller/wishlist/wishlist_controller.dart';
 import 'package:easybuy_user_app/view/screens/cartpage/cart_page.dart';
 import 'package:easybuy_user_app/view/screens/homescreen/home_screen.dart';
 import 'package:easybuy_user_app/view/screens/navbar/widgets/bottom_nav_items.dart';
@@ -16,6 +18,9 @@ class CustomNavigationBar extends StatelessWidget {
     final LandingPageController landingPageController = Get.put(
       LandingPageController(),
     );
+    Get.lazyPut(()=> OrderController());
+    Get.lazyPut(() => WishlistController());
+    
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: NavBarItems(
@@ -26,9 +31,9 @@ class CustomNavigationBar extends StatelessWidget {
             index: landingPageController.tabIndex.value,
             children:  [
               const OrderPage(),
-              const WishalistPAge(),
-               HomeScreen(),
-              const CartPage(),
+              WishlistScreen(),
+              HomeScreen(),
+              CartPage(),
               ProfilePage(),
             ],
           ),

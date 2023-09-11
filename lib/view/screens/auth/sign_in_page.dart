@@ -74,8 +74,6 @@ class SignInPage extends StatelessWidget {
                           ? 'loading...!'
                           : 'Sign In',
                       onPressed: () {
-                        debugPrint(authcontroller.loginemail.text);
-                        debugPrint(authcontroller.loginpassword.text);
                         if (_formKey.currentState!.validate()) {
                           authcontroller.signIn();
                         }
@@ -120,7 +118,6 @@ class SignInPage extends StatelessWidget {
           height: MediaQuery.of(context).size.width * .4,
           child: Lottie.asset(
             'assets/lottie/animation_lkthvyt2.json',
-            //fit: BoxFit.cover,
           ),
         );
       }

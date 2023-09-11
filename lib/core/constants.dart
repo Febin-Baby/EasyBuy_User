@@ -22,3 +22,11 @@ class Boldtext18 extends StatelessWidget {
     return  Text(text,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w800,fontFamily: 'Lora',),);
   }
 }
+late double khieght;
+late double kwidth;
+
+selectHieght(double? height) {
+  return SizedBox(
+    height: height,
+  );
+}
