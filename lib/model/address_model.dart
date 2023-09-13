@@ -1,5 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class AddressModel {
+  //final String? documentId;
   final String name;
   final String phone;
   final String zipcode;
@@ -8,6 +8,7 @@ class AddressModel {
   final String state;
   final String postoffice;
   AddressModel({
+    //this.documentId,
     required this.name,
     required this.phone,
     required this.zipcode,
@@ -17,11 +18,11 @@ class AddressModel {
     required this.postoffice,
   });
   
-
-  AddressModel.fromMap({required Map<String, dynamic> data})
-      : name = data['name'],
-        phone = data['phone'],
-        zipcode = data['zipcode'],
+  AddressModel.fromMap({required data})
+      : //documentId=data['documentId'],
+        name = data['name'],
+        phone = data['phone'] as String,
+        zipcode = data['zipcode']as String,
         housename = data['housename'],
         city = data['city'],
         state = data['state'],
@@ -30,6 +31,7 @@ class AddressModel {
 
   Map<String, dynamic> toMap() {
     return {
+      //'documentId':documentId,
       'name': name,
       'phone': phone,
       'zipcode': zipcode,

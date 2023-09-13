@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easybuy_user_app/controller/wishlist/wishlist_controller.dart';
 import 'package:easybuy_user_app/core/color.dart';
 import 'package:easybuy_user_app/core/constants.dart';
+import 'package:easybuy_user_app/view/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -13,16 +14,15 @@ class WishlistTile extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('product')
-          // .doc()
+          /// .doc()
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.data == null) {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: Loading(),
           );
         }
-        //List<QueryDocumentSnapshot<Object?>> data = [];
-        //data = snapshot.data!.docs;
+
         return GridView.builder(
           padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
           itemCount: snapshot.data!.docs.length,

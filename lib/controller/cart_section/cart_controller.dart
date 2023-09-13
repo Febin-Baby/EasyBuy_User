@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easybuy_user_app/core/color.dart';
 import 'package:easybuy_user_app/model/cart_model.dart';
@@ -13,26 +11,24 @@ class CartController extends GetxController {
 
   Future<void> getCartItems() async {
     try {
-      List querySnapshot =
-          await FirebaseFirestore.instance.collection('users').doc('cart ${authenti.currentUser?.uid}').collection('cart').get().then((value) => value.docs);
+      List querySnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc('${authenti.currentUser?.uid}')
+          .collection('cart')
+          .get()
+          .then((value) => value.docs);
       totalcartprice = 0;
       cartList.clear();
       for (var docSnapshot in querySnapshot) {
         // Convert each document to a CartModel object
-        CartModel cartItem = CartModel.fromData(
-            data: docSnapshot.data() as Map<String, dynamic>);
+        CartModel cartItem =
+            CartModel.fromMap(data: docSnapshot);
         totalcartprice += (cartItem.price! * cartItem.quantity!);
         cartList.add(cartItem);
-        log(cartList.length.toString());
-        debugPrint('${cartItem.price!}');
-        debugPrint('${cartItem.quantity!}');
       }
-      debugPrint('$totalcartprice');
       update();
-      //return cartList;
-    } catch (e) {
-      SnackBar(content: Text(e.toString()));
-      //return [];
+    }on FirebaseException catch (e) {
+      Get.snackbar('Firebase exception', e.toString());
     }
   }
 
@@ -64,10 +60,10 @@ class CartController extends GetxController {
     );
   }
 
-  deleteCartItem({required int index}){
-    CartModel cart=cartList[index];
+  deleteCartItem({required int index}) {
+    CartModel cart = cartList[index];
     CartService().deleteCartItem(productId: cart.productId!);
-    totalcartprice =totalcartprice-cartList[index].totalprice!;
+    totalcartprice = totalcartprice - cartList[index].totalprice!;
     cartList.removeAt(index);
     update();
   }

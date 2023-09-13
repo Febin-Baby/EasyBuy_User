@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easybuy_user_app/controller/wishlist/wishlist_collection.dart';
 import 'package:easybuy_user_app/core/color.dart';
+import 'package:easybuy_user_app/service/wishlist_collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -29,7 +29,7 @@ class WishlistController extends GetxController {
   getwishlist() async {
     wishlist = await FirebaseFirestore.instance
         .collection('users')
-        .doc('wish${authenti.currentUser?.uid}')
+        .doc('${authenti.currentUser?.uid}')
         .collection('wishlist')
         .get()
         .then((value) => value.docs.map((element) => element.id).toList());

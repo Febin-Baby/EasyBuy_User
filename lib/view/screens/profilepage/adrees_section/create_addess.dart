@@ -1,8 +1,10 @@
 import 'package:easybuy_user_app/model/address_model.dart';
+import 'package:easybuy_user_app/service/firebase_services/address_collection.dart';
 import 'package:easybuy_user_app/view/widgets/app_bar_custom.dart';
 import 'package:easybuy_user_app/view/widgets/commen_button.dart';
 import 'package:easybuy_user_app/view/widgets/textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class CreateAddress extends StatelessWidget {
@@ -93,6 +95,8 @@ class CreateAddress extends StatelessWidget {
                   state: stateCOntroller.text.trim(),
                   postoffice: postofficeCOntroller.text.trim(),
                 );
+                AddressServices().addressAddtoFirebase(addressModel: addressModel);
+                Get.back();
               }
             },
           )

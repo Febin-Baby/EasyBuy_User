@@ -68,7 +68,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(const AdressScreen());
+                      Get.to(AdressScreen());
                     },
                     child: const ProfileListTile(
                       preffixIcon: Icons.home_rounded,

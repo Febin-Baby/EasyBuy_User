@@ -145,7 +145,7 @@ class CustomProductBuilder extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4),
                         color: kgrey,
                       ),
-                      width: kwidth * .14,
+                      width: kwidth * .12,
                       height: khieght * .03,
                       child: const Center(
                         child: Text(
@@ -167,7 +167,7 @@ class CustomProductBuilder extends StatelessWidget {
                   Text(
                     '\$$price',
                     style: const TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.w800),
+                        fontSize: 16, fontWeight: FontWeight.w800),
                   ),
                   const Spacer(),
                   SizedBox(

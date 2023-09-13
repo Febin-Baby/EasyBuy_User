@@ -14,7 +14,7 @@ class CartModel {
     required this.totalprice,
   });
 
-  CartModel.fromData({required data}) {
+  CartModel.fromMap({required data}) {
     price = data['stringprice'];
     productId = data['productId'];
     quantity = data['quantity'];
@@ -22,14 +22,6 @@ class CartModel {
     imageLink = data['imageLink'];
     totalprice = (price ?? 0) * (quantity ?? 0);
   }
-
-  CartModel.fromMap({required Map<String, dynamic> data})
-      : price = data['stringprice'],
-        productId = data['productId'],
-        quantity = data['quantity'] as int,
-        name = data['name'],
-        imageLink = data['imageLink'],
-        totalprice = data['totalPrice'];
 
   Map<String, dynamic> toMap() {
     return {

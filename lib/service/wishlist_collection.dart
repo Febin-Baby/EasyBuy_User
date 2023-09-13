@@ -11,14 +11,14 @@ class WishlistService {
     try {
       await FirebaseFirestore.instance
           .collection('users')
-          .doc('wish${authenti.currentUser?.uid}')
+          .doc('${authenti.currentUser?.uid}')
           .collection('wishlist')
           .doc(productId)
           .set({'productid': productId}).then((value) {
         Get.snackbar('SuccessFully', 'Done');
       });
     } on FirebaseException catch (e) {
-      Get.snackbar('Fail fromfirebase', e.message.toString());
+      Get.snackbar('Fail from firebase', e.message.toString());
     }
   }
 
@@ -26,7 +26,7 @@ class WishlistService {
     try {
       await FirebaseFirestore.instance
           .collection('users')
-          .doc('wish${authenti.currentUser?.uid}')
+          .doc('${authenti.currentUser?.uid}')
           .collection('wishlist')
           .doc(productId)
           .delete()

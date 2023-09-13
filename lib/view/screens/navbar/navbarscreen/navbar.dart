@@ -1,3 +1,4 @@
+import 'package:easybuy_user_app/controller/address_controller/address_controller.dart';
 import 'package:easybuy_user_app/controller/cart_section/order_controlller.dart';
 import 'package:easybuy_user_app/controller/nav_bar_controller.dart';
 import 'package:easybuy_user_app/controller/wishlist/wishlist_controller.dart';
@@ -20,6 +21,7 @@ class CustomNavigationBar extends StatelessWidget {
     );
     Get.lazyPut(()=> OrderController());
     Get.lazyPut(() => WishlistController());
+    Get.lazyPut(()=>AddressController());
     
     return SafeArea(
       child: Scaffold(

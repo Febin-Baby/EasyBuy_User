@@ -2,6 +2,7 @@ import 'package:easybuy_user_app/controller/cart_section/cart_controller.dart';
 import 'package:easybuy_user_app/core/color.dart';
 import 'package:easybuy_user_app/core/constants.dart';
 import 'package:easybuy_user_app/view/screens/ckeckout_scction/checkout_scree.dart';
+import 'package:easybuy_user_app/view/screens/profilepage/adrees_section/adrees_page.dart';
 import 'package:easybuy_user_app/view/widgets/commen_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -93,7 +94,7 @@ class CartPage extends StatelessWidget {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          controller.deleteCartItem(index: index);
+                                          showAlertDialog(context, controller, index);
                                         },
                                         child: const Icon(
                                           Icons.delete_forever_outlined,
@@ -138,7 +139,7 @@ class CartPage extends StatelessWidget {
                                   'Cart is empty', 'Add some items here',
                                   snackPosition: SnackPosition.BOTTOM);
                             } else {
-                              Get.to(CheckoutScreen());
+                              Get.to(AdressScreen());
                             }
                           })
                     ],
@@ -149,6 +150,32 @@ class CartPage extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+  void showAlertDialog(BuildContext context,CartController controller,int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Do you want delete item'),
+          content: const Text('Are you sure?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                controller.deleteCartItem(index: index);
+                Get.back();
+              },
+              child: const Text('Sure'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
