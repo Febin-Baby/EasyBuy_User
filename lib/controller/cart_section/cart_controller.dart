@@ -13,7 +13,7 @@ class CartController extends GetxController {
     try {
       List querySnapshot = await FirebaseFirestore.instance
           .collection('users')
-          .doc('${authenti.currentUser?.uid}')
+          .doc('${authenti.currentUser?.email}')
           .collection('cart')
           .get()
           .then((value) => value.docs);
@@ -25,6 +25,8 @@ class CartController extends GetxController {
             CartModel.fromMap(data: docSnapshot);
         totalcartprice += (cartItem.price! * cartItem.quantity!);
         cartList.add(cartItem);
+        debugPrint('${cartItem.quantity}');
+        debugPrint('${cartItem.totalprice}');
       }
       update();
     }on FirebaseException catch (e) {
@@ -42,7 +44,7 @@ class CartController extends GetxController {
       CartService().updateCartItem(
         productId: cart.productId!,
         updateQty: cart.quantity!,
-        price: cart.price!,
+        price: cart.totalprice!,
       );
     }
   }
@@ -56,7 +58,7 @@ class CartController extends GetxController {
     CartService().updateCartItem(
       productId: cart.productId!,
       updateQty: cart.quantity!,
-      price: cart.price!,
+      price: cart.totalprice!,
     );
   }
 
@@ -67,4 +69,26 @@ class CartController extends GetxController {
     cartList.removeAt(index);
     update();
   }
+
+  Future<void> clearCart() async {
+  try {
+    CollectionReference cartCollection = FirebaseFirestore.instance
+        .collection('users')
+        .doc('${authenti.currentUser?.email}')
+        .collection('cart');
+
+    QuerySnapshot querySnapshot = await cartCollection.get();
+
+    // Delete each cart item in Firestore
+    for (QueryDocumentSnapshot docSnapshot in querySnapshot.docs) {
+      await cartCollection.doc(docSnapshot.id).delete();
+    }
+    cartList.clear();
+    totalcartprice = 0;
+    update();
+  } catch (e) {
+    Get.snackbar('Error', 'Failed to clear the cart: $e');
+  }
+}
+
 }

@@ -13,7 +13,7 @@ Future<void> main() async {
   checkInternet = await checkInternetConnetion();
   runApp(const MyApp());
 }
- 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

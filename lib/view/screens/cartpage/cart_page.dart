@@ -1,11 +1,11 @@
 import 'package:easybuy_user_app/controller/cart_section/cart_controller.dart';
 import 'package:easybuy_user_app/core/color.dart';
 import 'package:easybuy_user_app/core/constants.dart';
-import 'package:easybuy_user_app/view/screens/ckeckout_scction/checkout_scree.dart';
 import 'package:easybuy_user_app/view/screens/profilepage/adrees_section/adrees_page.dart';
 import 'package:easybuy_user_app/view/widgets/commen_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 // ignore: must_be_immutable
 class CartPage extends StatelessWidget {
@@ -32,8 +32,8 @@ class CartPage extends StatelessWidget {
                   child: SizedBox(
                     height: displayHeight * .67,
                     child: controller.cartList.isEmpty
-                        ? const Center(
-                            child: Text('Empty cart'),
+                        ? Center(
+                            child: Lottie.asset(embtyLottie),
                           )
                         : ListView.builder(
                             shrinkWrap: true,
@@ -54,13 +54,12 @@ class CartPage extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                          'Price: \$${controller.cartList[index].price}.00'),
-                                      Text(
-                                        'Total price: \$${controller.cartList[index].totalprice}.00',
-                                        style: const TextStyle(
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
+                                        'Price: \$${controller.cartList[index].price}.00',
                                       ),
+                                      Boldtext(
+                                        text:
+                                          'Total price: \$${controller.cartList[index].totalprice}.00',
+                                      )
                                     ],
                                   ),
                                   trailing: Row(
@@ -78,8 +77,8 @@ class CartPage extends StatelessWidget {
                                                   size: 20)),
                                           Text(
                                             '${cartController.cartList[index].quantity}',
-                                            style:
-                                                const TextStyle(color: purpple),
+                                            style: const TextStyle(
+                                                color: purpple, fontSize: 11),
                                           ),
                                           InkWell(
                                             onTap: () {
@@ -94,7 +93,8 @@ class CartPage extends StatelessWidget {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          showAlertDialog(context, controller, index);
+                                          showAlertDialog(
+                                              context, controller, index);
                                         },
                                         child: const Icon(
                                           Icons.delete_forever_outlined,
@@ -152,7 +152,9 @@ class CartPage extends StatelessWidget {
       ),
     );
   }
-  void showAlertDialog(BuildContext context,CartController controller,int index) {
+
+  void showAlertDialog(
+      BuildContext context, CartController controller, int index) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -169,7 +171,7 @@ class CartPage extends StatelessWidget {
             TextButton(
               onPressed: () {
                 controller.deleteCartItem(index: index);
-                Get.back();
+                Navigator.pop(context);
               },
               child: const Text('Sure'),
             ),

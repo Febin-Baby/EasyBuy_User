@@ -1,7 +1,7 @@
 import 'package:easybuy_user_app/controller/address_controller/address_controller.dart';
 import 'package:easybuy_user_app/core/constants.dart';
 import 'package:easybuy_user_app/model/address_model.dart';
-import 'package:easybuy_user_app/view/screens/ckeckout_scction/checkout_scree.dart';
+import 'package:easybuy_user_app/view/screens/ckeckout_scction/checkout_screen.dart';
 import 'package:easybuy_user_app/view/screens/profilepage/adrees_section/create_addess.dart';
 import 'package:easybuy_user_app/view/widgets/app_bar_custom.dart';
 import 'package:easybuy_user_app/view/widgets/commen_button.dart';
@@ -47,16 +47,15 @@ class AdressScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Card(
                         child: ListTile(
-                          //tileColor: Colors.blue,
                           selected: true,
                           title: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Boldtext18(
                                   text:
-                                      'Name :       ${controller.address![index].name}'),
+                                      'Name :      ${controller.address![index].name}'),
                               Text(
-                                  'Phone :        ${controller.address![index].phone}'),
+                                  'Phone :       ${controller.address![index].phone}'),
                               Text(
                                   'House name : ${controller.address![index].housename}'),
                               Text(
@@ -66,7 +65,7 @@ class AdressScreen extends StatelessWidget {
                               Text(
                                   'City    :     ${controller.address![index].city}'),
                               Text(
-                                  'Zip code  :     ${controller.address![index].zipcode}'),
+                                  'Zip code  :    ${controller.address![index].zipcode}'),
                             ],
                           ),
                           leading: Radio<int>(
@@ -77,9 +76,13 @@ class AdressScreen extends StatelessWidget {
                               // Get the selected address model
                               AddressModel selectedAddress =
                                   controller.address![value];
-                              // Navigate to the CheckoutScreen and pass the selected address
-                              Get.to(CheckoutScreen(
-                                  addressModel: selectedAddress));
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => CheckoutScreen(
+                                    addressModel: selectedAddress,
+                                  ),
+                                ),
+                              );
                             },
                           ),
                           trailing: const Icon(Icons.delete),

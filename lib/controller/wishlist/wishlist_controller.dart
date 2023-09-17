@@ -29,7 +29,7 @@ class WishlistController extends GetxController {
   getwishlist() async {
     wishlist = await FirebaseFirestore.instance
         .collection('users')
-        .doc('${authenti.currentUser?.uid}')
+        .doc('${authenti.currentUser?.email}')
         .collection('wishlist')
         .get()
         .then((value) => value.docs.map((element) => element.id).toList());

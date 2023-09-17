@@ -6,6 +6,7 @@ import 'package:easybuy_user_app/view/screens/details_page/details_page.dart';
 import 'package:easybuy_user_app/view/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 
 //WishlistController wishListObj = WishlistController();
@@ -28,8 +29,8 @@ class CustomProductBuilder extends StatelessWidget {
         }
 
         if (snapshot.data!.docs.isEmpty) {
-          return const Center(
-            child: Text('Sorry no items available'),
+          return Center(
+            child: Lottie.asset(embtyLottie),
           );
         }
 
@@ -41,25 +42,28 @@ class CustomProductBuilder extends StatelessWidget {
             crossAxisCount: 2,
             crossAxisSpacing: kwidth * .02,
             mainAxisSpacing: khieght * .01,
-            mainAxisExtent: khieght * .34,
+            mainAxisExtent: khieght * .40,
           ),
           itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                Get.to(
-                  DetailsPage(
-                    index: index,
-                    proId: snapshot.data!.docs[index].id,
-                    queryDocumentSnapshot: snapshot.data!.docs[index],
-                  ),
-                );
-              },
-              child: _itemsGrid(
-                queryDocumentSnapshot: snapshot.data!.docs[index],
-                name: snapshot.data!.docs[index]['name'],
-                imagepath: snapshot.data!.docs[index]['imagelist'][0],
-                discount: snapshot.data!.docs[index]['stringdiscount'],
-                price: snapshot.data!.docs[index]['stringprice'],
+            return Material(
+              elevation: 0,
+              child: GestureDetector(
+                onTap: () {
+                  Get.to(
+                    DetailsPage(
+                      index: index,
+                      proId: snapshot.data!.docs[index].id,
+                      queryDocumentSnapshot: snapshot.data!.docs[index],
+                    ),
+                  );
+                },
+                child: _itemsGrid(
+                  queryDocumentSnapshot: snapshot.data!.docs[index],
+                  name: snapshot.data!.docs[index]['name'],
+                  imagepath: snapshot.data!.docs[index]['imagelist'][0],
+                  discount: snapshot.data!.docs[index]['stringdiscount'],
+                  price: snapshot.data!.docs[index]['stringprice'],
+                ),
               ),
             );
           },
@@ -90,7 +94,6 @@ class CustomProductBuilder extends StatelessWidget {
               child: Image.network(
                 width: kwidth * 0.5,
                 height: khieght * 0.2,
-                fit: BoxFit.cover,
                 imagepath,
                 errorBuilder: (context, error, stackTrace) =>
                     SizedBox(width: kwidth * 0.5, height: khieght * 0.2),
@@ -98,33 +101,38 @@ class CustomProductBuilder extends StatelessWidget {
             ),
             Row(
               children: [
-                Boldtext18(
-                  text: name,
+                Container(
+                  width: 100,
+                  child: Boldtext18(
+                    text: name,
+                  ),
                 ),
                 const Spacer(),
-                InkWell(
-                  onTap: () {
-                    if (wishListObj.wishlist
-                        .contains(queryDocumentSnapshot.id)) {
-                          debugPrint('from screen ${queryDocumentSnapshot.id}');
-                      wishListObj.remove(productId: queryDocumentSnapshot.id);
-                      debugPrint(queryDocumentSnapshot.id);
-                    } else {
-                      wishListObj.add(productId: queryDocumentSnapshot.id);
-                    }
-                  },
-                  child: GetBuilder<WishlistController>(
-                    init: wishListObj,
-                    builder: (controller) {
-                      //wishListObj = controller;
-                      return Icon(
-                        controller.wishlist.contains(queryDocumentSnapshot.id)
-                            ? Icons.favorite
-                            : Icons.favorite_border,
-                        size: 28,
-                        color: Colors.red,
-                      );
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      if (wishListObj.wishlist
+                          .contains(queryDocumentSnapshot.id)) {
+                            debugPrint('from screen ${queryDocumentSnapshot.id}');
+                        wishListObj.remove(productId: queryDocumentSnapshot.id);
+                        debugPrint(queryDocumentSnapshot.id);
+                      } else {
+                        wishListObj.add(productId: queryDocumentSnapshot.id);
+                      }
                     },
+                    child: GetBuilder<WishlistController>(
+                      init: wishListObj,
+                      builder: (controller) {
+                        //wishListObj = controller;
+                        return Icon(
+                          controller.wishlist.contains(queryDocumentSnapshot.id)
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          size: 28,
+                          color: kred,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],

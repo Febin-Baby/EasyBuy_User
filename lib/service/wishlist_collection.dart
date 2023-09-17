@@ -11,7 +11,7 @@ class WishlistService {
     try {
       await FirebaseFirestore.instance
           .collection('users')
-          .doc('${authenti.currentUser?.uid}')
+          .doc('${authenti.currentUser?.email}')
           .collection('wishlist')
           .doc(productId)
           .set({'productid': productId}).then((value) {
@@ -26,7 +26,7 @@ class WishlistService {
     try {
       await FirebaseFirestore.instance
           .collection('users')
-          .doc('${authenti.currentUser?.uid}')
+          .doc('${authenti.currentUser?.email}')
           .collection('wishlist')
           .doc(productId)
           .delete()

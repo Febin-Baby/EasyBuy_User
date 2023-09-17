@@ -1,5 +1,5 @@
 import 'package:easybuy_user_app/model/address_model.dart';
-import 'package:easybuy_user_app/service/firebase_services/address_collection.dart';
+import 'package:easybuy_user_app/service/address_collection.dart';
 import 'package:easybuy_user_app/view/widgets/app_bar_custom.dart';
 import 'package:easybuy_user_app/view/widgets/commen_button.dart';
 import 'package:easybuy_user_app/view/widgets/textfield.dart';

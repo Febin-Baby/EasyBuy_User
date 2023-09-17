@@ -8,7 +8,7 @@ class AddressServices {
     try {
       FirebaseFirestore.instance
           .collection('users')
-          .doc(authenti.currentUser?.uid)
+          .doc(authenti.currentUser?.email)
           .collection('address')
           .doc()
           .set(addressModel.toMap(), SetOptions(merge: true))
@@ -20,10 +20,14 @@ class AddressServices {
     }
   }
 
-  
-  addressDeleteFromFirebase({required String documentId})async{
+  addressDeleteFromFirebase({required String documentId}) async {
     try {
-      FirebaseFirestore.instance.collection('users').doc(authenti.currentUser?.uid).collection('address').doc(documentId).delete();
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(authenti.currentUser?.email)
+          .collection('address')
+          .doc(documentId)
+          .delete();
     } on FirebaseException catch (e) {
       Get.snackbar('Firebase exception', e.toString());
     }

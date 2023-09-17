@@ -40,9 +40,9 @@ class AuthController extends GetxController {
         // Check if the user already exists in the database
         DocumentSnapshot userSnapshot = await database
             .collection('users')
-            .doc(auth.currentUser?.uid)
+            .doc(auth.currentUser?.email)
             .collection('logincredential')
-            .doc(auth.currentUser?.uid)
+            .doc(auth.currentUser?.email)
             .get();
         if (!userSnapshot.exists) {
           // Add the user's data to the database if it doesn't exist
@@ -118,9 +118,9 @@ class AuthController extends GetxController {
     try {
       DocumentSnapshot userSnapshot = await database
           .collection('users')
-          .doc(auth.currentUser?.uid)
+          .doc(auth.currentUser?.email)
           .collection('logincredential')
-          .doc(auth.currentUser?.uid)
+          .doc(auth.currentUser?.email)
           .get();
           
       if (userSnapshot.exists) {
@@ -215,11 +215,9 @@ class AuthController extends GetxController {
     try {
       await database
           .collection('users')
-          .doc(auth.currentUser?.uid)
+          .doc(auth.currentUser?.email)
           .collection('logincredential')
-          .add(
-            userModel.toMap(),
-          );
+          .add(userModel.toMap());
     } catch (e) {
       Get.snackbar('Something went wrong', '$e');
     }

@@ -30,3 +30,5 @@ selectHieght(double? height) {
     height: height,
   );
 }
+
+const String embtyLottie ='assets/lottie/Apple Podcasts.json';

@@ -21,7 +21,7 @@ class CustomNavigationBar extends StatelessWidget {
     );
     Get.lazyPut(()=> OrderController());
     Get.lazyPut(() => WishlistController());
-    Get.lazyPut(()=>AddressController());
+    Get.lazyPut(()=> AddressController());
     
     return SafeArea(
       child: Scaffold(

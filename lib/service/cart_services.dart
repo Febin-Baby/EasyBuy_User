@@ -9,13 +9,11 @@ class CartService {
     try {
       FirebaseFirestore.instance
           .collection('users')
-          .doc('${authenti.currentUser?.uid}')
+          .doc('${authenti.currentUser?.email}')
           .collection('cart')
           .doc(productId)
           .set(cartItem.toMap(), SetOptions(merge: true))
-          .then((value) {
-         Get.snackbar('Added', 'Done');
-      });
+          .then((value) {});
     } on FirebaseException catch (e) {
       Get.snackbar('Added', '$e');
     }
@@ -29,14 +27,13 @@ class CartService {
     try {
       FirebaseFirestore.instance
           .collection('users')
-          .doc('${authenti.currentUser?.uid}')
+          .doc('${authenti.currentUser?.email}')
           .collection('cart')
           .doc(productId)
           .set({
         'quantity': updateQty,
         'totalPrice': price,
       }, SetOptions(merge: true));
-      Get.snackbar('Updated', 'Done');
     } on FirebaseException catch (e) {
       log(e.message.toString());
       Get.snackbar('Update error', '$e');
@@ -47,11 +44,10 @@ class CartService {
     try {
       await FirebaseFirestore.instance
           .collection('users')
-          .doc('${authenti.currentUser?.uid}')
+          .doc('${authenti.currentUser?.email}')
           .collection('cart')
           .doc(productId)
           .delete();
-      Get.snackbar('Deleted', 'Done');
     } on FirebaseException catch (e) {
       Get.snackbar('Delete error', '$e');
     }

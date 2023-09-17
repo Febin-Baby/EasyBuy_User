@@ -6,19 +6,18 @@ import 'package:get/get.dart';
 class AddressController extends GetxController {
 
   List<AddressModel>? address = [];
-  RxInt selectedAddressIndex = RxInt(0);
+  var selectedAddressIndex = RxInt(0);
   AddressModel? selectedAddress;
 
   getaddress() async {
     try {
-      List data = await FirebaseFirestore.instance
+      QuerySnapshot<Map<String, dynamic>> data = await FirebaseFirestore.instance
         .collection('users')
-        .doc(authenti.currentUser?.uid)
+        .doc(authenti.currentUser?.email)
         .collection('address')
-        .get()
-        .then((value) => value.docs);
+        .get();
         address?.clear();
-      for (var docSnapshot in data) {
+      for (var docSnapshot in data.docs) {
         // Convert each document to a Address object
         AddressModel addressitem = AddressModel.fromMap(
           data: docSnapshot);
@@ -33,12 +32,6 @@ class AddressController extends GetxController {
   //For address select radio
   void selectAddress({required int index}) {
     selectedAddressIndex.value = index;
-    update();
-  }
-  
-  //For address displayng
-  void updateSelectedAddress(AddressModel address) {
-    selectedAddress = address;
     update();
   }
 }
