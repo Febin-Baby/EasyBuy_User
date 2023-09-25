@@ -5,7 +5,7 @@ import 'package:easybuy_user_app/controller/wishlist/wishlist_controller.dart';
 import 'package:easybuy_user_app/view/screens/cartpage/cart_page.dart';
 import 'package:easybuy_user_app/view/screens/homescreen/home_screen.dart';
 import 'package:easybuy_user_app/view/screens/navbar/widgets/bottom_nav_items.dart';
-import 'package:easybuy_user_app/view/screens/orderpage/order_page.dart';
+import 'package:easybuy_user_app/view/screens/orderpage/new_oredr_page.dart';
 import 'package:easybuy_user_app/view/screens/profilepage/profile_page.dart';
 import 'package:easybuy_user_app/view/screens/wishllistpage/wishlist_page.dart';
 import 'package:flutter/material.dart';

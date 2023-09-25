@@ -45,48 +45,52 @@ class AdressScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: controller.address?.length,
                     itemBuilder: (context, index) {
-                      return Card(
-                        child: ListTile(
-                          selected: true,
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Boldtext18(
-                                  text:
-                                      'Name :      ${controller.address![index].name}'),
-                              Text(
-                                  'Phone :       ${controller.address![index].phone}'),
-                              Text(
-                                  'House name : ${controller.address![index].housename}'),
-                              Text(
-                                  'Post office :   ${controller.address![index].postoffice}'),
-                              Text(
-                                  'State    :     ${controller.address![index].state}'),
-                              Text(
-                                  'City    :     ${controller.address![index].city}'),
-                              Text(
-                                  'Zip code  :    ${controller.address![index].zipcode}'),
-                            ],
-                          ),
-                          leading: Radio<int>(
-                            value: index,
-                            groupValue: controller.selectedAddressIndex.value,
-                            onChanged: (value) async {
-                              controller.selectAddress(index: value!);
-                              // Get the selected address model
-                              AddressModel selectedAddress =
-                                  controller.address![value];
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => CheckoutScreen(
-                                    addressModel: selectedAddress,
+                      return GetBuilder<AddressController>(
+                        builder: (controller) {
+                          return Card(
+                          child: ListTile(
+                            selected: true,
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Boldtext18(
+                                    text:
+                                        'Name :      ${controller.address![index].name}'),
+                                Text(
+                                    'Phone :       ${controller.address![index].phone}'),
+                                Text(
+                                    'House name : ${controller.address![index].housename}'),
+                                Text(
+                                    'Post office :   ${controller.address![index].postoffice}'),
+                                Text(
+                                    'State    :     ${controller.address![index].state}'),
+                                Text(
+                                    'City    :     ${controller.address![index].city}'),
+                                Text(
+                                    'Zip code  :    ${controller.address![index].zipcode}'),
+                              ],
+                            ),
+                            leading: Radio<int>(
+                              value: index,
+                              groupValue: controller.selectedAddressIndex,
+                              onChanged: (value) async {
+                                controller.selectAddress(index: value!);
+                                // Get the selected address model
+                                AddressModel selectedAddress =
+                                    controller.address![value];
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => CheckoutScreen(
+                                      addressModel: selectedAddress,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
+                            trailing: const Icon(Icons.delete),
                           ),
-                          trailing: const Icon(Icons.delete),
-                        ),
+                        );
+                        },
                       );
                     },
                   );

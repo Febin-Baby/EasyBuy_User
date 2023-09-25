@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class AddressController extends GetxController {
 
   List<AddressModel>? address = [];
-  var selectedAddressIndex = RxInt(0);
+  int? selectedAddressIndex;
   AddressModel? selectedAddress;
 
   getaddress() async {
@@ -31,7 +31,7 @@ class AddressController extends GetxController {
 
   //For address select radio
   void selectAddress({required int index}) {
-    selectedAddressIndex.value = index;
-    update();
+    selectedAddressIndex = index;
+    update();     
   }
 }

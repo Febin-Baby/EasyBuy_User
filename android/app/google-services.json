@@ -1,44 +1,26 @@
 {
   "project_info": {
-    "project_number": "898963849793",
-    "project_id": "easybuy-8a3fb",
-    "storage_bucket": "easybuy-8a3fb.appspot.com"
+    "project_number": "447417157074",
+    "project_id": "easybuy-user",
+    "storage_bucket": "easybuy-user.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:898963849793:android:ac4b425ff144b65a153cc0",
+        "mobilesdk_app_id": "1:447417157074:android:52a7387f7ffa9359b3f40b",
         "android_client_info": {
           "package_name": "com.example.easybuy_user_app"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "898963849793-uacsrg9eu7avgvh08qs82gj8jt94aqv6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.easybuy_user_app",
-            "certificate_hash": "658d879e5e185c609e08b997e2e5975a5853ff4e"
-          }
-        },
-        {
-          "client_id": "898963849793-mk2sb9ak2pue2adefq781kl3ac5l29dp.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD64oaXEbvVLPbDivG8Y2qCQRURU9NAPKM"
+          "current_key": "AIzaSyA04-Np-St0ry4z0omMAFiD8I7GbHgPktA"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "898963849793-mk2sb9ak2pue2adefq781kl3ac5l29dp.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
