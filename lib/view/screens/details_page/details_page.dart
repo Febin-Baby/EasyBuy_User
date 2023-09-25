@@ -22,7 +22,7 @@ class DetailsPage extends StatelessWidget {
   final int index;
   final QueryDocumentSnapshot<Object?> queryDocumentSnapshot;
   final String proId;
-  final OrderController orderController = Get.put(OrderController());
+  final QuantityController orderController = Get.put(QuantityController());
 
   @override
   Widget build(BuildContext context) {

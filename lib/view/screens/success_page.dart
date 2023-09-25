@@ -1,4 +1,4 @@
-import 'package:easybuy_user_app/view/screens/orderpage/order_page.dart';
+import 'package:easybuy_user_app/view/screens/navbar/navbarscreen/navbar.dart';
 import 'package:easybuy_user_app/view/widgets/commen_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,9 +20,9 @@ class SuccessScreen extends StatelessWidget {
           CustomButton(
             txt: 'Go to DashBoard',
             onPressed: () {
-              Get.to(const OrderPage());
+              Get.offAll(const CustomNavigationBar());
             },
-          )
+          ),
         ],
       ),
     );

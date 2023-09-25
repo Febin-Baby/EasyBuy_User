@@ -45,25 +45,22 @@ class CustomProductBuilder extends StatelessWidget {
             mainAxisExtent: khieght * .40,
           ),
           itemBuilder: (context, index) {
-            return Material(
-              elevation: 0,
-              child: GestureDetector(
-                onTap: () {
-                  Get.to(
-                    DetailsPage(
-                      index: index,
-                      proId: snapshot.data!.docs[index].id,
-                      queryDocumentSnapshot: snapshot.data!.docs[index],
-                    ),
-                  );
-                },
-                child: _itemsGrid(
-                  queryDocumentSnapshot: snapshot.data!.docs[index],
-                  name: snapshot.data!.docs[index]['name'],
-                  imagepath: snapshot.data!.docs[index]['imagelist'][0],
-                  discount: snapshot.data!.docs[index]['stringdiscount'],
-                  price: snapshot.data!.docs[index]['stringprice'],
-                ),
+            return GestureDetector(
+              onTap: () {
+                Get.to(
+                  DetailsPage(
+                    index: index,
+                    proId: snapshot.data!.docs[index].id,
+                    queryDocumentSnapshot: snapshot.data!.docs[index],
+                  ),
+                );
+              },
+              child: _itemsGrid(
+                queryDocumentSnapshot: snapshot.data!.docs[index],
+                name: snapshot.data!.docs[index]['name'],
+                imagepath: snapshot.data!.docs[index]['imagelist'][0],
+                discount: snapshot.data!.docs[index]['stringdiscount'],
+                price: snapshot.data!.docs[index]['stringprice'],
               ),
             );
           },
@@ -81,8 +78,16 @@ class CustomProductBuilder extends StatelessWidget {
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: kgrey,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+        boxShadow: const [
+          BoxShadow(
+            color: kgrey,
+            spreadRadius: 1,
+            blurRadius: 9,
+            offset: Offset(0, 2),
+          ),
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -101,7 +106,7 @@ class CustomProductBuilder extends StatelessWidget {
             ),
             Row(
               children: [
-                Container(
+                SizedBox(
                   width: 100,
                   child: Boldtext18(
                     text: name,
@@ -113,7 +118,7 @@ class CustomProductBuilder extends StatelessWidget {
                     onTap: () {
                       if (wishListObj.wishlist
                           .contains(queryDocumentSnapshot.id)) {
-                            debugPrint('from screen ${queryDocumentSnapshot.id}');
+                        debugPrint('from screen ${queryDocumentSnapshot.id}');
                         wishListObj.remove(productId: queryDocumentSnapshot.id);
                         debugPrint(queryDocumentSnapshot.id);
                       } else {

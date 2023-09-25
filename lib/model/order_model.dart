@@ -25,10 +25,10 @@ class OrderModell {
     required this.orderStatus,
     required this.orderPlacedDate,
   }) {
-    _orderStatusSetter();
+    orderStatusSetter();
   }
 
-  _orderStatusSetter() {
+  orderStatusSetter() {
     shippingDate ??= 'Not setted';
     outForDeliveryDate ??= 'Not setted';
     deliveryDate ??= 'Not setted';

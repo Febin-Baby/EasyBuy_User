@@ -1,9 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easybuy_user_app/core/color.dart';
 import 'package:easybuy_user_app/model/address_model.dart';
 import 'package:easybuy_user_app/model/cart_model.dart';
 import 'package:easybuy_user_app/model/order_model.dart';
 import 'package:easybuy_user_app/service/order_services.dart';
-import 'package:easybuy_user_app/view/screens/success_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,10 +14,11 @@ class RazorpayServices {
   final String my_api_key = 'rzp_test_iB6csD8z6wRUYu';
   final String? usermail = authenti.currentUser?.email;
   final razorpay = Razorpay();
-  late OrderModell orderModel;
+  OrderModell? orderModel;
 
   void successPayment() {
-    razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, successCallback);
+    //razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, successCallback);
+    razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, errorCallback);
     razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, externalWalletCallback);
   }
@@ -33,7 +34,7 @@ class RazorpayServices {
     Map<String, dynamic> options = {
       'key': my_api_key,
       'amount': totalPrice,
-      'currency': 'USD',
+      'currency': 'INR',
       'name': 'Eazy Buy',
       'description': description,
       'retry': {'enabled': true, 'max_count': 1},
@@ -58,16 +59,14 @@ class RazorpayServices {
 
     try {
       razorpay.open(options);
-    } catch (e) {
+    } on FirebaseException catch (e) {
       debugPrint('Error: $e');
       Get.snackbar('Error', e.toString());
     }
   }
-
-  void successCallback(PaymentSuccessResponse response) {
-    OrderServicess(orderModel).addOrder();
-    Get.offAll(const SuccessScreen());
-    // Handle success
+    //Payment is success
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async{
+    await OrderServicess(orderModel!).addOrder();
   }
 
   void errorCallback(PaymentFailureResponse response) {

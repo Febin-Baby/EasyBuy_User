@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class OrderController extends GetxController {
+class QuantityController extends GetxController {
  int quantity = 1;
   quantityIncrement() {
     quantity++;

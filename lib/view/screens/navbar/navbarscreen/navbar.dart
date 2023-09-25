@@ -19,7 +19,7 @@ class CustomNavigationBar extends StatelessWidget {
     final LandingPageController landingPageController = Get.put(
       LandingPageController(),
     );
-    Get.lazyPut(()=> OrderController());
+    Get.lazyPut(()=> QuantityController());
     Get.lazyPut(() => WishlistController());
     Get.lazyPut(()=> AddressController());
     
@@ -32,7 +32,7 @@ class CustomNavigationBar extends StatelessWidget {
           () => IndexedStack(
             index: landingPageController.tabIndex.value,
             children:  [
-              const OrderPage(),
+              OrdersScreen(),
               WishlistScreen(),
               HomeScreen(),
               CartPage(),

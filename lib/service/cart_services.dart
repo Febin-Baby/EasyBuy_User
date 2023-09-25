@@ -5,7 +5,7 @@ import 'package:easybuy_user_app/model/cart_model.dart';
 import 'package:get/get.dart';
 
 class CartService {
-  addToCart({required CartModel cartItem,required String productId}) async {
+  addToCart({required CartModel cartItem, required String productId}) async {
     try {
       FirebaseFirestore.instance
           .collection('users')
@@ -15,7 +15,7 @@ class CartService {
           .set(cartItem.toMap(), SetOptions(merge: true))
           .then((value) {});
     } on FirebaseException catch (e) {
-      Get.snackbar('Added', '$e');
+      Get.snackbar('Add error', '$e');
     }
   }
 
@@ -53,3 +53,21 @@ class CartService {
     }
   }
 }
+
+// class Cart {
+//   int? quentity;
+//   int? price;
+//   Cart({this.price, this.quentity});
+
+//   Cart.frommap(var data) {
+//     quentity = data['quentity'];
+//     price = data['price'];
+//   }
+
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'quentity':quentity,
+//       'price':price,
+//     };
+//   }
+// }

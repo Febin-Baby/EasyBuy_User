@@ -18,12 +18,12 @@ class QuantityChange extends StatelessWidget {
       required this.price,
       required this.name,
       required this.image});
-  final OrderController orderController = Get.put(OrderController());
+  final QuantityController orderController = Get.put(QuantityController());
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Select quantity'),
-      content: GetBuilder<OrderController>(builder: (controller) {
+      content: GetBuilder<QuantityController>(builder: (controller) {
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),

@@ -25,8 +25,6 @@ class CartController extends GetxController {
             CartModel.fromMap(data: docSnapshot);
         totalcartprice += (cartItem.price! * cartItem.quantity!);
         cartList.add(cartItem);
-        debugPrint('${cartItem.quantity}');
-        debugPrint('${cartItem.totalprice}');
       }
       update();
     }on FirebaseException catch (e) {

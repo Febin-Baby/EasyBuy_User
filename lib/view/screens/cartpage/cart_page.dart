@@ -58,7 +58,7 @@ class CartPage extends StatelessWidget {
                                       ),
                                       Boldtext(
                                         text:
-                                          'Total price: \$${controller.cartList[index].totalprice}.00',
+                                            'Total price: \$${controller.cartList[index].totalprice}.00',
                                       )
                                     ],
                                   ),
@@ -154,7 +154,10 @@ class CartPage extends StatelessWidget {
   }
 
   void showAlertDialog(
-      BuildContext context, CartController controller, int index) {
+    BuildContext context,
+    CartController controller,
+    int index,
+  ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
