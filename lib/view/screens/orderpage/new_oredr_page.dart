@@ -55,10 +55,14 @@ class OrdersScreen extends StatelessWidget {
                                     DateTime.parse(orderData.orderPlacedDate!);
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
+                                    horizontal: 15,
+                                  ),
                                   child: InkWell(
                                     onTap: () {
-                                      Get.to(OrderDetail(orderData: orderData, dateTime: dateTime, razor: razor));
+                                      Get.to(OrderDetail(
+                                          orderData: orderData,
+                                          dateTime: dateTime,
+                                          razor: razor,),);
                                     },
                                     child: OrderContainer(
                                       orderData: orderData,
