@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-
 // ignore: must_be_immutable
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
@@ -17,11 +16,12 @@ class SplashScreen extends StatelessWidget {
     Future<void> checkUserSignIn() async {
       await Future.delayed(const Duration(milliseconds: 3700));
       if (auth.currentUser?.uid != null) {
-        Get.off(const CustomNavigationBar());
+        Get.off(() => const CustomNavigationBar());
       } else {
-        Get.off(SignInPage());
+        Get.off(() => SignInPage());
       }
     }
+
     checkUserSignIn();
     return Scaffold(
       body: Stack(

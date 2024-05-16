@@ -2,7 +2,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easybuy_user_app/controller/cart_section/order_controlller.dart';
 import 'package:easybuy_user_app/view/screens/cartpage/widgets/quantity_add_snackbar.dart';
-import 'package:easybuy_user_app/view/screens/homescreen/widgets/pageview_image.dart';
 import 'package:easybuy_user_app/view/screens/homescreen/widgets/vareint_list.dart';
 import 'package:easybuy_user_app/view/widgets/loading.dart';
 import 'package:flutter/material.dart';
@@ -44,8 +43,8 @@ class DetailsPage extends StatelessWidget {
 
               return ListView(
                 children: [
-                  ProductPageview(
-                      imagelist: snapshot.data!.docs[index]['imagelist']),
+                  // ProductPageview(
+                  //     imagelist: snapshot.data!.docs[index]['imagelist']),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

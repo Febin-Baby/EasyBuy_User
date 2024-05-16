@@ -3,7 +3,6 @@ import 'package:easybuy_user_app/controller/home_page_controlller/coming_soon_sl
 import 'package:easybuy_user_app/core/color.dart';
 import 'package:easybuy_user_app/core/constants.dart';
 import 'package:easybuy_user_app/view/screens/homescreen/all_products.dart';
-import 'package:easybuy_user_app/view/screens/homescreen/widgets/scroll_image.dart';
 import 'package:easybuy_user_app/view/screens/search_page.dart/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +25,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(()=> SearchPage());
+              Get.to(() => SearchPage());
             },
             icon: const Icon(Icons.search),
           ),
@@ -49,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: size),
-                ScrollImage(controller: controller),
+                //  ScrollImage(controller: controller),
                 khieg10,
                 const Boldtext18(text: 'All Products'),
                 khiegh20,

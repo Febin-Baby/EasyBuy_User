@@ -1,6 +1,5 @@
 import 'package:easybuy_user_app/core/constants.dart';
 import 'package:easybuy_user_app/functions/checkInternet.dart';
-import 'package:easybuy_user_app/view/screens/internet/internet_ckeck.dart';
 import 'package:easybuy_user_app/view/screens/splashscreen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -22,17 +21,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     khieght = MediaQuery.of(context).size.height;
     kwidth = MediaQuery.of(context).size.width;
-    return GetMaterialApp(   
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(          
+      theme: ThemeData(
         fontFamily: 'Urbanist',
         colorScheme: ColorScheme.fromSeed(
-          seedColor:  Colors.purple,
+          seedColor: Colors.purple,
         ),
         useMaterial3: true,
       ),
-      home: checkInternet? SplashScreen() : const ScreenNoInternet(),
+      home: SplashScreen(),
+      // home: ShowCaseWidget(
+      //   builder: Builder(
+      //     builder: (context) => SplashScreen(),
+      //   ),
+      // ),
     );
   }
 }

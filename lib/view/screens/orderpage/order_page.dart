@@ -1,4 +1,3 @@
-import 'package:easybuy_user_app/controller/order_controller.dart';
 import 'package:easybuy_user_app/core/color.dart';
 import 'package:easybuy_user_app/core/constants.dart';
 import 'package:easybuy_user_app/model/order_model.dart';
